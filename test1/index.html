@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+<style type="text/css">
+	body{
+		font-family: "microsoft yahei";
+		font-size: 20px;
+		line-height: 30px;
+		padding: 100px;
+	}
+	#text{
+		font-size: 20px;
+		line-height: 30px;
+		font-family: "microsoft yahei";
+	}
+	#text.error{
+		border-color: red;
+	}
+	#text.correct{
+		border-color: green;
+	}
+	#btn{
+		display: inline-block;
+		color: #fff;
+		background: darkblue;
+		padding: 3px 10px;
+		text-align: center;
+		cursor: pointer;
+		border-radius: 3px;
+	}
+	#wars.error{
+		color: red;
+	}
+	#wars.correct{
+		color: green;
+	}
+</style>
+</head>
+<body>
+	<form>
+		<label>姓名：<input type="text" id="text"></label>
+		<span id="btn">验证</span>
+	</form>
+	<p id="wars">必填，长度为4~16个字符</p>
+
+	<script>
+		var btn = document.getElementById('btn'),
+		wars = document.getElementById('wars');
+		btn.onclick = function(){
+			var obj = document.getElementById('text'),
+			str = obj.value,
+			len = 0;
+			for (var i = 0, num = str.length; i < num; i++) {
+				var code = str.charCodeAt(i);
+				if (code > 255) {
+					len++;
+				}
+				len++
+			}
+			if (len <= 0) {
+				obj.className = 'error';
+				wars.className = 'error';
+				wars.innerHTML = '姓名不能为空';
+			} else if( 4 =< len && len =< 16){
+				obj.className = 'correct';
+				wars.className = 'correct';
+				wars.innerHTML = '名称格式正确';
+			} else{
+				obj.className = 'error';
+				wars.className = 'error';
+				wars.innerHTML = '长度为4~16个字符';
+			}
+			console.log(len);
+		}
+	</script>
+</body>
